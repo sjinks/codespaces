@@ -1,4 +1,4 @@
-FROM ghcr.io/sjinks/codespaces/alpine-base:latest
+FROM ghcr.io/sjinks/codespaces/alpine-base:latest@sha256:f6ee7c7c1da9692c23589d7d07768e1c2170650a5c7ca69d63d21adb956f0776
 
 RUN \
     grep -Eq '^@edgem' /etc/apk/repositories || echo "@edgem https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \

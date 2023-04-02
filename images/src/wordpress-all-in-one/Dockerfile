@@ -83,7 +83,7 @@ RUN \
 
 # MailHog
 RUN \
-    if [ "$(arch)" = "arm64" ]; then \
+    if [ "$(arch)" = "arm64" ] || [ "$(arch)" = "aarch64" ]; then \
         wget -q https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_arm -O /usr/local/bin/mailhog; \
     elif [ "$(arch)" = "x86_64" ]; then \
         wget -q https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64 -O /usr/local/bin/mailhog; \

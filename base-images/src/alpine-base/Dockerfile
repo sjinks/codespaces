@@ -62,3 +62,6 @@ ENV LANG C.UTF-8
 ENV LC_COLLATE C
 
 ENTRYPOINT ["/sbin/init"]
+
+# 'devcontainer build' will overwrite this
+LABEL devcontainer.metadata="{\"remoteUser\":\"vscode\",\"overrideCommand\":false}"

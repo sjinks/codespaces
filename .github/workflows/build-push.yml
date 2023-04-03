@@ -24,9 +24,7 @@ jobs:
           - name: Alpine Base
             workspace-folder: base-images/src/alpine-base
             image-name: alpine-base
-            image-version-major: 1
-            image-version-minor: 0
-            image-version-patch: 1
+            image-version: 1.0.1
     steps:
       - name: Check out the source code
         uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
@@ -44,19 +42,26 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install @devcontainers/cli
-        run: npm install -g @devcontainers/cli
+      - name: Collect metadata
+        id: meta
+        uses: docker/metadata-action@v4.3.0
+        with:
+          images: ghcr.io/${{ github.repository }}/${{ matrix.image.image-name }}
+          tags: |
+            type=semver,pattern={{version}},value=${{ matrix.image.image-version }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ matrix.image.image-version }}
+            type=semver,pattern={{major}},value=${{ matrix.image.image-version }}
 
-      - name: Build image
-        run: |
-          devcontainer build \
-            --workspace-folder ${{ matrix.image.workspace-folder }} \
-            --platform linux/amd64,linux/arm64 \
-            --image-name=ghcr.io/${{ github.repository }}/${{ matrix.image.image-name }}:${{ matrix.image.image-version-major }}.${{ matrix.image.image-version-minor }}.${{ matrix.image.image-version-patch }} \
-            --image-name=ghcr.io/${{ github.repository }}/${{ matrix.image.image-name }}:${{ matrix.image.image-version-major }}.${{ matrix.image.image-version-minor }} \
-            --image-name=ghcr.io/${{ github.repository }}/${{ matrix.image.image-name }}:${{ matrix.image.image-version-major }} \
-            --image-name=ghcr.io/${{ github.repository }}/${{ matrix.image.image-name }}:latest \
-            --push
+      - name: Build and push
+        uses: docker/build-push-action@v4.0.0
+        with:
+          context: ${{ matrix.image.workspace-folder }}
+          file: ${{ matrix.image.workspace-folder }}/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          cache-from: type=gha,scope=${{ matrix.image.image-name }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image.image-name }}
 
   publish-images:
     needs:
@@ -73,9 +78,7 @@ jobs:
           - name: WordPress All-in-One
             workspace-folder: images/src/wordpress-all-in-one
             image-name: wordpress-all-in-one
-            image-version-major: 1
-            image-version-minor: 0
-            image-version-patch: 0
+            image-version: 1.0.0
     steps:
       - name: Check out the source code
         uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
@@ -93,16 +96,23 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install @devcontainers/cli
-        run: npm install -g @devcontainers/cli
+      - name: Collect metadata
+        id: meta
+        uses: docker/metadata-action@v4.3.0
+        with:
+          images: ghcr.io/${{ github.repository }}/${{ matrix.image.image-name }}
+          tags: |
+            type=semver,pattern={{version}},value=${{ matrix.image.image-version }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ matrix.image.image-version }}
+            type=semver,pattern={{major}},value=${{ matrix.image.image-version }}
 
-      - name: Build image
-        run: |
-          devcontainer build \
-            --workspace-folder ${{ matrix.image.workspace-folder }} \
-            --platform linux/amd64,linux/arm64 \
-            --image-name=ghcr.io/${{ github.repository }}/${{ matrix.image.image-name }}:${{ matrix.image.image-version-major }}.${{ matrix.image.image-version-minor }}.${{ matrix.image.image-version-patch }} \
-            --image-name=ghcr.io/${{ github.repository }}/${{ matrix.image.image-name }}:${{ matrix.image.image-version-major }}.${{ matrix.image.image-version-minor }} \
-            --image-name=ghcr.io/${{ github.repository }}/${{ matrix.image.image-name }}:${{ matrix.image.image-version-major }} \
-            --image-name=ghcr.io/${{ github.repository }}/${{ matrix.image.image-name }}:latest \
-            --push
+      - name: Build and push
+        uses: docker/build-push-action@v4.0.0
+        with:
+          context: ${{ matrix.image.workspace-folder }}
+          file: ${{ matrix.image.workspace-folder }}/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          cache-from: type=gha,scope=${{ matrix.image.image-name }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image.image-name }}

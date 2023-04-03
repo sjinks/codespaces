@@ -103,3 +103,6 @@ RUN [ "${CONTAINER_USER}" = 'vscode' ] || sed -i "s/vscode/${CONTAINER_USER}/" /
 RUN \
     install -d -o "${CONTAINER_USER}" -g "${CONTAINER_USER}" /wp && \
     su-exec "${CONTAINER_USER}:${CONTAINER_USER}" wp core download --path=/wp
+
+# 'devcontainer build' will overwrite this
+LABEL devcontainer.metadata="{\"remoteUser\":\"vscode\",\"overrideCommand\":false,\"forwardPorts\":[80,8025]}"

@@ -3,5 +3,7 @@
         "dockerfile": "./Dockerfile",
         "context": "."
     },
-    "remoteUser": "vscode"
+    "remoteUser": "vscode",
+    "overrideCommand": false,
+    "forwardPorts": [80, 8025]
 }

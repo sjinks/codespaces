@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build-image:
-    name: 'Build image: ${{ matrix.image.image-name }}'
+    name: 'Build image: ${{ matrix.image.name }}'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

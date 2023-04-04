@@ -3,5 +3,15 @@
         "dockerfile": "./Dockerfile",
         "context": "."
     },
-    "remoteUser": "vscode"
+    "forwardPorts": [80, 8025],
+    "portsAttributes": {
+        "80": {
+            "label": "Application",
+            "onAutoForward": "notify"
+        },
+        "8025": {
+            "label": "Mailhog",
+            "onAutoForward": "notify"
+        }
+    }
 }

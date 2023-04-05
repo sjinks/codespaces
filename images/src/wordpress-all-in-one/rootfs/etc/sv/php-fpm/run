@@ -3,4 +3,11 @@
 set -eu
 exec 2>&1
 
+if [ -f /etc/conf.d/php-fpm.env ]; then
+    set -a
+    # shellcheck source=/dev/null
+    . /etc/conf.d/php-fpm.env
+    set +a
+fi
+
 exec /usr/sbin/php-fpm --nodaemonize

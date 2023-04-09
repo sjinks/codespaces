@@ -72,8 +72,8 @@ jobs:
           - name: WordPress All-in-One
             workspace-folder: images/src/wordpress-all-in-one
             image-name: wordpress-all-in-one
-            image-version-major: 1
-            image-version-minor: 2
+            image-version-major: 2
+            image-version-minor: 0
             image-version-patch: 0
     steps:
       - name: Check out the source code

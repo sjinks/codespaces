@@ -81,17 +81,25 @@ RUN \
     sed -i "s/user nginx;/user ${CONTAINER_USER};/" /etc/nginx/nginx.conf && \
     chown -R "${CONTAINER_USER}:${CONTAINER_USER}" /run/nginx /var/log/nginx /var/lib/nginx
 
-# MailHog
+# Mailpit
 RUN \
-    if [ "$(arch)" = "arm64" ] || [ "$(arch)" = "aarch64" ]; then \
-        wget -q https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_arm -O /usr/local/bin/mailhog; \
-    elif [ "$(arch)" = "x86_64" ]; then \
-        wget -q https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64 -O /usr/local/bin/mailhog; \
+    set -e; \
+    ARCH="$(arch)"; \
+    LATEST=$(curl -w '%{url_effective}' -I -L -s -S https://github.com/axllent/mailpit/releases/latest -o /dev/null | sed -e 's|.*/||'); \
+    if [ "${ARCH}" = "arm64" ] || [ "${ARCH}" = "aarch64" ]; then \
+        ARCH="arm64"; \
+    elif [ "${ARCH}" = "x86_64" ] || [ "${ARCH}" = "amd64" ]; then \
+        ARCH="amd64"; \
     else \
-        echo "(!) Unsupported architecture: $(arch)"; \
+        echo "(!) Unsupported architecture: ${ARCH}"; \
         exit 1; \
     fi; \
-    chmod 0755 /usr/local/bin/mailhog
+    mkdir -p /tmp/mailpit; \
+    cd /tmp/mailpit; \
+    wget -q https://github.com/axllent/mailpit/releases/download/${LATEST}/mailpit-linux-${ARCH}.tar.gz -O - | tar -xz; \
+    install -m 0755 -o root -g root mailpit /usr/local/bin/mailpit; \
+    cd ..; \
+    rm -rf /tmp/mailpit
 
 COPY rootfs /
 COPY --chown=${CONTAINER_USER}:${CONTAINER_USER} wp /wp

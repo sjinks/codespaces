@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -eu
+exec 2>&1
+
+: "${CONTAINER_USER:=nobody}"
+
+exec su-exec "${CONTAINER_USER}:${CONTAINER_USER}" \
+    /usr/local/bin/mailpit \
+        --listen 127.0.0.1:8025 \
+        --smtp 127.0.0.1:10025

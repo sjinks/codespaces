@@ -74,7 +74,7 @@ jobs:
             image-name: wordpress-all-in-one
             image-version-major: 2
             image-version-minor: 0
-            image-version-patch: 1
+            image-version-patch: 2
     steps:
       - name: Check out the source code
         uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0

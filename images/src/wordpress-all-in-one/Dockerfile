@@ -96,7 +96,7 @@ RUN \
     fi; \
     mkdir -p /tmp/mailpit; \
     cd /tmp/mailpit; \
-    wget -q https://github.com/axllent/mailpit/releases/download/${LATEST}/mailpit-linux-${ARCH}.tar.gz -O - | tar -xz; \
+    wget -q "https://github.com/axllent/mailpit/releases/download/${LATEST}/mailpit-linux-${ARCH}.tar.gz" -O - | tar -xz; \
     install -m 0755 -o root -g root mailpit /usr/local/bin/mailpit; \
     cd ..; \
     rm -rf /tmp/mailpit

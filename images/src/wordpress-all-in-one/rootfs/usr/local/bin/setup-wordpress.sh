@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export XDEBUG_MODE=off
+
 WP_DOMAIN="${1:-localhost}"
 WP_MULTISITE_TYPE="${2:-}"
 

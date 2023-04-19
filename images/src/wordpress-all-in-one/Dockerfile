@@ -1,6 +1,7 @@
 FROM ghcr.io/sjinks/codespaces/alpine-base:latest
 
 RUN \
+    grep -Eq '^@edgec' /etc/apk/repositories || echo "@edgec https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     grep -Eq '^@edgem' /etc/apk/repositories || echo "@edgem https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
     grep -Eq '^@edget' /etc/apk/repositories || echo "@edget https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
@@ -11,6 +12,7 @@ RUN \
         memcached \
         nodejs npm python3 make g++ \
         icu-data-full@edgem icu-libs@edgem libssl3@edgem ghostscript \
+        imagemagick-libs@edgec \
         php8@edget \
         php8-fpm@edget \
         php8-pear@edget \

@@ -10,7 +10,7 @@ RUN \
         nginx \
         mariadb mariadb-client \
         memcached \
-        nodejs npm python3 make g++ \
+        nodejs@edgem npm@edgem python3 make g++ \
         icu-data-full@edgem icu-libs@edgem libssl3@edgem ghostscript \
         imagemagick-libs@edgec \
         php8@edget \

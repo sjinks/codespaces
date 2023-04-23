@@ -6,46 +6,50 @@ ARG USER_GID=${USER_UID}
 
 ENV CONTAINER_USER ${USERNAME}
 
-RUN apk add --no-cache \
-    runit \
-    bash \
-    openssh-client \
-    gnupg \
-    procps \
-    lsof \
-    htop \
-    net-tools \
-    psmisc \
-    curl \
-    wget \
-    rsync \
-    ca-certificates \
-    unzip \
-    zip \
-    nano \
-    vim \
-    less \
-    jq \
-    libgcc \
-    libstdc++ \
-    krb5-libs \
-    libintl \
-    libssl1.1 \
-    lttng-ust \
-    tzdata \
-    userspace-rcu \
-    zlib \
-    sudo \
-    coreutils \
-    sed \
-    grep \
-    which \
-    ncdu \
-    shadow \
-    strace \
-    mandoc man-pages \
-    git \
-    su-exec gettext && \
+RUN \
+    echo "@edgec https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+    echo "@edgem https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
+    echo "@edget https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+    apk add --no-cache \
+        runit \
+        bash \
+        openssh-client \
+        gnupg \
+        procps \
+        lsof \
+        htop \
+        net-tools \
+        psmisc \
+        curl \
+        wget \
+        rsync \
+        ca-certificates \
+        unzip \
+        zip \
+        nano \
+        vim \
+        less \
+        jq \
+        libgcc \
+        libstdc++ \
+        krb5-libs \
+        libintl \
+        libssl1.1 \
+        lttng-ust \
+        tzdata \
+        userspace-rcu \
+        zlib \
+        sudo \
+        coreutils \
+        sed \
+        grep \
+        which \
+        ncdu \
+        shadow \
+        strace \
+        mandoc man-pages \
+        git \
+        su-exec gettext && \
     ln -sf /sbin/runit-init /sbin/init
 
 COPY rootfs /

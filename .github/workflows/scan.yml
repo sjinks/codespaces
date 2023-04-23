@@ -9,7 +9,21 @@ permissions:
   contents: read
 
 jobs:
+  prepare:
+    name: Prepare list of images to build
+    runs-on: ubuntu-latest
+    outputs:
+      images: ${{ steps.set-matrix.outputs.images }}
+    steps:
+      - name: Check out the source code
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
+
+      - name: Set matrix
+        id: set-matrix
+        run: echo images="$(jq '."x-build"' images/src/*/.devcontainer.json | jq --slurp -c .)" >> "${GITHUB_OUTPUT}"
+
   scan-image:
+    needs: prepare
     name: 'Build and Scan: ${{ matrix.image.name }}'
     runs-on: ubuntu-latest
     permissions:
@@ -19,19 +33,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image:
-          - name: Alpine Base
-            workspace-folder: base-images/src/alpine-base
-            image-name: alpine-base
-          - name: WordPress All-in-One
-            workspace-folder: images/src/wordpress-all-in-one
-            image-name: wordpress-all-in-one
-          - name: WordPress All-in-One (Xdebug)
-            workspace-folder: images/src/wordpress-all-in-one-xdebug
-            image-name: wordpress-all-in-one-xdebug
-          - name: Node.js
-            workspace-folder: images/src/nodejs
-            image-name: nodejs
+        image: ${{ fromJson(needs.prepare.outputs.images) }}
     steps:
       - name: Check out the source code
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
@@ -46,11 +48,7 @@ jobs:
         run: npm install -g @devcontainers/cli
 
       - name: Build image
-        run: |
-          devcontainer build \
-            --workspace-folder ${{ matrix.image.workspace-folder }} \
-            --platform linux/amd64 \
-            --image-name ${{ matrix.image.image-name }}
+        run: devcontainer build --workspace-folder "images/src/${{ matrix.image.image-name }}" --image-name ${{ matrix.image.image-name }}
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@e5f43133f6e8736992c9f3c1b3296e24b37e17f2 # 0.10.0

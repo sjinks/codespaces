@@ -24,8 +24,8 @@ jobs:
             workspace-folder: base-images/src/alpine-base
             image-name: alpine-base
             image-version-major: 1
-            image-version-minor: 0
-            image-version-patch: 3
+            image-version-minor: 1
+            image-version-patch: 0
     steps:
       - name: Check out the source code
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2

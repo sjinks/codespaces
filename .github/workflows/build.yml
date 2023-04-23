@@ -27,6 +27,9 @@ jobs:
           - name: WordPress All-in-One (Xdebug)
             workspace-folder: images/src/wordpress-all-in-one-xdebug
             image-name: wordpress-all-in-one-xdebug
+          - name: Node.js
+            workspace-folder: images/src/nodejs
+            image-name: nodejs
     steps:
       - name: Check out the source code
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2

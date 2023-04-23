@@ -48,7 +48,7 @@ RUN apk add --no-cache \
     su-exec gettext && \
     ln -sf /sbin/runit-init /sbin/init
 
-ADD rootfs /
+COPY rootfs /
 
 RUN \
     groupadd --gid "${USER_GID}" "${USERNAME}" && \

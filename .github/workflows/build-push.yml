@@ -51,9 +51,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install @devcontainers/cli
-        run: npm install -g @devcontainers/cli
-
       - name: Set versions
         id: set-versions
         run: |
@@ -70,6 +67,10 @@ jobs:
           else
             echo exists="0" >> "${GITHUB_OUTPUT}"
           fi
+
+      - name: Install @devcontainers/cli
+        run: npm install -g @devcontainers/cli
+        if: steps.exists.outputs.exists == '0'
 
       - name: Build image
         run: |

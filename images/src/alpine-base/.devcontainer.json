@@ -2,7 +2,7 @@
     "x-build": {
         "name": "Alpine",
         "image-name": "alpine-base",
-        "image-version": "1.3.0"
+        "image-version": "1.4.0"
     },
     "build": {
         "dockerfile": "./Dockerfile",

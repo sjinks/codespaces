@@ -2,7 +2,7 @@
     "x-build": {
         "name": "WordPress All-in-One (Xdebug)",
         "image-name": "wordpress-all-in-one-xdebug",
-        "image-version": "1.0.1"
+        "image-version": "1.0.2"
     },
     "build": {
         "dockerfile": "./Dockerfile",

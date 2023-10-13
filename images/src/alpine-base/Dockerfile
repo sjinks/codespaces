@@ -49,7 +49,7 @@ RUN \
         strace \
         mandoc man-pages \
         git \
-        su-exec gettext
+        su-exec gettext github-cli
 
 COPY rootfs /
 

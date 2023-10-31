@@ -1,75 +1,64 @@
 FROM ghcr.io/sjinks/codespaces/alpine-base:latest
 
 RUN \
-    grep -Eq '^@edgec' /etc/apk/repositories || echo "@edgec https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-    grep -Eq '^@edgem' /etc/apk/repositories || echo "@edgem https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-    grep -Eq '^@edget' /etc/apk/repositories || echo "@edget https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-
-RUN \
     apk add --no-cache \
         nginx \
         mariadb mariadb-client \
         memcached \
-        nodejs@edgem npm@edgem python3 make g++ \
-        icu-data-full@edgem icu-libs@edgem libssl3@edgem ghostscript \
-        imagemagick-libs@edgec \
-        php8@edget \
-        php8-fpm@edget \
-        php8-pear@edget \
-        php8-pecl-apcu@edget \
-        php8-bcmath@edget \
-        php8-calendar@edget \
-        php8-ctype@edget \
-        php8-curl@edget \
-        php8-dom@edget \
-        php8-exif@edget \
-        php8-fileinfo@edget \
-        php8-ftp@edget \
-        php8-gd@edget \
-        php8-pecl-imagick@edget \
-        php8-gmp@edget \
-        php8-iconv@edget \
-        php8-intl@edget \
-        php8-json@edget \
-        php8-mbstring@edget \
-        php8-pecl-memcache@edget \
-        php8-pecl-memcached@edget \
-        php8-mysqli@edget \
-        php8-mysqlnd@edget \
-        php8-opcache@edget \
-        php8-openssl@edget \
-        php8-pcntl@edget \
-        php8-pdo@edget \
-        php8-pdo_sqlite@edget \
-        php8-phar@edget \
-        php8-posix@edget \
-        php8-session@edget \
-        php8-shmop@edget \
-        php8-simplexml@edget \
-        php8-soap@edget \
-        php8-sockets@edget \
-        php8-sodium@edget \
-        php8-sqlite3@edget \
-        php8-sysvsem@edget \
-        php8-sysvshm@edget \
-        php8-tokenizer@edget \
-        php8-xml@edget \
-        php8-xmlreader@edget \
-        php8-xmlwriter@edget \
-        php8-zip@edget
+        nodejs npm python3 make g++ \
+        icu-data-full icu-libs libssl3 ghostscript \
+        imagemagick-libs \
+        php81 \
+        php81-fpm \
+        php81-pear \
+        php81-pecl-apcu \
+        php81-bcmath \
+        php81-calendar \
+        php81-ctype \
+        php81-curl \
+        php81-dom \
+        php81-exif \
+        php81-fileinfo \
+        php81-ftp \
+        php81-gd \
+        php81-pecl-imagick \
+        php81-gmp \
+        php81-iconv \
+        php81-intl \
+        php81-json \
+        php81-mbstring \
+        php81-pecl-memcache \
+        php81-pecl-memcached \
+        php81-mysqli \
+        php81-mysqlnd \
+        php81-opcache \
+        php81-openssl \
+        php81-pcntl \
+        php81-pdo \
+        php81-pdo_sqlite \
+        php81-phar \
+        php81-posix \
+        php81-session \
+        php81-shmop \
+        php81-simplexml \
+        php81-soap \
+        php81-sockets \
+        php81-sodium \
+        php81-sqlite3 \
+        php81-sysvsem \
+        php81-sysvshm \
+        php81-tokenizer \
+        php81-xml \
+        php81-xmlreader \
+        php81-xmlwriter \
+        php81-zip
 
 # PHP
-ENV PHP_INI_DIR /etc/php8
+ENV PHP_INI_DIR /etc/php81
 RUN \
-    ln -s /usr/sbin/php-fpm8 /usr/sbin/php-fpm && \
-    ln -s /usr/bin/php8 /usr/bin/php && \
-    ln -s /usr/bin/pecl8 /usr/bin/pecl && \
-    ln -s /usr/bin/pear8 /usr/bin/pear && \
-    ln -s /usr/bin/peardev8 /usr/bin/peardev && \
-    ln -s /usr/bin/phar8 /usr/bin/phar && \
-    ln -s /usr/bin/phar8 /usr/bin/phar.phar && \
+    ln -s /usr/sbin/php-fpm81 /usr/sbin/php-fpm && \
     install -d -m 0750 -o "${CONTAINER_USER}" -g adm /var/log/php-fpm && \
-    echo "export PHP_INI_DIR=/etc/php8" > /etc/profile.d/php_ini_dir.sh && \
+    echo "export PHP_INI_DIR=/etc/php81" > /etc/profile.d/php_ini_dir.sh && \
     pecl update-channels && \
     rm -rf /tmp/pear ~/.pearrc && \
     wget -q https://getcomposer.org/installer -O - | php -- --install-dir=/usr/bin/ --filename=composer

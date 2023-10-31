@@ -44,8 +44,13 @@ jobs:
         id: changes
         run: |
           if [ "${{ github.event_name }}" = "push" ]; then
-            base="${{ github.event.before }}"
+            if [ "${{ github.event.base_ref }}" = "" ]; then
+              base="HEAD^"
+            else
+              base="${{ github.event.before }}"
+            fi
             head="${{ github.event.after }}"
+
             image="images/src/${{ matrix.image.image-name }}"
             changes="$(git diff --name-only "${base}" "${head}" -- "${image}" | grep -Fv "${image}/README.md" || true)"
             if [ -n "${changes}" ]; then

@@ -18,13 +18,8 @@ jobs:
 
       - name: Check changed files
         run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            base="${{ github.event.pull_request.base.sha }}"
-            head="${{ github.event.pull_request.head.sha }}"
-          else
-            base="${{ github.event.before }}"
-            head="${{ github.event.after }}"
-          fi
+          base="${{ github.event.pull_request.base.sha }}"
+          head="${{ github.event.pull_request.head.sha }}"
           for image in images/src/*; do
             changes="$(git diff --name-only "${base}" "${head}" -- "${image}" | grep -Fv "${image}/README.md" || true)"
             if [ -n "${changes}" ] && ! echo "${changes}" | grep -q "${image}/.devcontainer.json"; then

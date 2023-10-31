@@ -1,62 +1,57 @@
 FROM ghcr.io/sjinks/codespaces/alpine-base:latest
 
 RUN \
-    grep -Eq '^@edgec' /etc/apk/repositories || echo "@edgec https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-    grep -Eq '^@edgem' /etc/apk/repositories || echo "@edgem https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-    grep -Eq '^@edget' /etc/apk/repositories || echo "@edget https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-
-RUN \
     apk add --no-cache \
         nginx \
         mariadb mariadb-client \
         memcached \
-        nodejs@edgem npm@edgem python3 make g++ \
-        icu-data-full@edgem icu-libs@edgem libssl3@edgem ghostscript \
-        imagemagick-libs@edgec \
-        php81@edget \
-        php81-fpm@edget \
-        php81-pear@edget \
-        php81-pecl-apcu@edget \
-        php81-bcmath@edget \
-        php81-calendar@edget \
-        php81-ctype@edget \
-        php81-curl@edget \
-        php81-dom@edget \
-        php81-exif@edget \
-        php81-fileinfo@edget \
-        php81-ftp@edget \
-        php81-gd@edget \
-        php81-pecl-imagick@edget \
-        php81-gmp@edget \
-        php81-iconv@edget \
-        php81-intl@edget \
-        php81-json@edget \
-        php81-mbstring@edget \
-        php81-pecl-memcache@edget \
-        php81-pecl-memcached@edget \
-        php81-mysqli@edget \
-        php81-mysqlnd@edget \
-        php81-opcache@edget \
-        php81-openssl@edget \
-        php81-pcntl@edget \
-        php81-pdo@edget \
-        php81-pdo_sqlite@edget \
-        php81-phar@edget \
-        php81-posix@edget \
-        php81-session@edget \
-        php81-shmop@edget \
-        php81-simplexml@edget \
-        php81-soap@edget \
-        php81-sockets@edget \
-        php81-sodium@edget \
-        php81-sqlite3@edget \
-        php81-sysvsem@edget \
-        php81-sysvshm@edget \
-        php81-tokenizer@edget \
-        php81-xml@edget \
-        php81-xmlreader@edget \
-        php81-xmlwriter@edget \
-        php81-zip@edget
+        nodejs npm python3 make g++ \
+        icu-data-full icu-libs libssl3 ghostscript \
+        imagemagick-libs \
+        php81 \
+        php81-fpm \
+        php81-pear \
+        php81-pecl-apcu \
+        php81-bcmath \
+        php81-calendar \
+        php81-ctype \
+        php81-curl \
+        php81-dom \
+        php81-exif \
+        php81-fileinfo \
+        php81-ftp \
+        php81-gd \
+        php81-pecl-imagick \
+        php81-gmp \
+        php81-iconv \
+        php81-intl \
+        php81-json \
+        php81-mbstring \
+        php81-pecl-memcache \
+        php81-pecl-memcached \
+        php81-mysqli \
+        php81-mysqlnd \
+        php81-opcache \
+        php81-openssl \
+        php81-pcntl \
+        php81-pdo \
+        php81-pdo_sqlite \
+        php81-phar \
+        php81-posix \
+        php81-session \
+        php81-shmop \
+        php81-simplexml \
+        php81-soap \
+        php81-sockets \
+        php81-sodium \
+        php81-sqlite3 \
+        php81-sysvsem \
+        php81-sysvshm \
+        php81-tokenizer \
+        php81-xml \
+        php81-xmlreader \
+        php81-xmlwriter \
+        php81-zip
 
 # PHP
 ENV PHP_INI_DIR /etc/php81

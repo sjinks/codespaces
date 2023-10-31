@@ -7,9 +7,6 @@ ARG USER_GID=${USER_UID}
 ENV CONTAINER_USER ${USERNAME}
 
 RUN \
-    echo "@edgec https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-    echo "@edgem https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-    echo "@edget https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk upgrade --no-cache && \
     apk add --no-cache \
         runit \

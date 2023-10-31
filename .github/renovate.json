@@ -2,14 +2,5 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>sjinks/.github:renovate-config"
-  ],
-  "packageRules": [
-    {
-      "matchManagers": ["dockerfile"],
-      "matchPackagePrefixes": [
-        "ghcr.io/sjinks/codespaces/"
-      ],
-      "enabled": false
-    }
   ]
 }

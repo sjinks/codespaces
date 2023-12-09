@@ -1,4 +1,4 @@
-FROM ghcr.io/sjinks/codespaces/alpine-base:latest@sha256:dca02cd83853abb79880052afc67b0a80b1545fdf3fca0ad30bcfea67b3e3645
+FROM ghcr.io/sjinks/codespaces/alpine-base:latest@sha256:788bb61abb9204d051548e85f1260391be1bd5a77f4bdf5ef9d25d1576f41e2a
 
 RUN \
     apk add --no-cache \
@@ -57,6 +57,8 @@ RUN \
 ENV PHP_INI_DIR /etc/php81
 RUN \
     ln -s /usr/sbin/php-fpm81 /usr/sbin/php-fpm && \
+    ln -s /usr/bin/pecl81 /usr/bin/pecl && \
+    ln -s /usr/bin/php81 /usr/bin/php && \
     install -d -m 0750 -o "${CONTAINER_USER}" -g adm /var/log/php-fpm && \
     echo "export PHP_INI_DIR=/etc/php81" > /etc/profile.d/php_ini_dir.sh && \
     pecl update-channels && \

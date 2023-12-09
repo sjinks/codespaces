@@ -57,6 +57,7 @@ RUN \
 ENV PHP_INI_DIR /etc/php81
 RUN \
     ln -s /usr/sbin/php-fpm81 /usr/sbin/php-fpm && \
+    ln -s /usr/bin/pecl81 /usr/bin/pecl && \
     install -d -m 0750 -o "${CONTAINER_USER}" -g adm /var/log/php-fpm && \
     echo "export PHP_INI_DIR=/etc/php81" > /etc/profile.d/php_ini_dir.sh && \
     pecl update-channels && \

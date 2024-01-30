@@ -2,7 +2,7 @@
     "x-build": {
         "name": "WordPress All-in-One",
         "image-name": "wordpress-all-in-one",
-        "image-version": "2.2.0"
+        "image-version": "2.3.0"
     },
     "build": {
         "dockerfile": "./Dockerfile",

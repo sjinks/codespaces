@@ -1,0 +1,48 @@
+{
+    "x-build": {
+        "name": "WordPress All-in-One",
+        "image-name": "wordpress-all-in-one",
+        "image-version": "3.0.0"
+    },
+    "image": "ghcr.io/sjinks/codespaces/alpine-base:latest",
+    "features": {
+        "./features/nginx": {},
+        "./features/mariadb": {},
+        "./features/memcached": {},
+        "./features/nodejs": {},
+        "./features/php": {},
+        "./features/mailpit": {},
+        "./features/wp-cli": {},
+        "./features/wordpress": {},
+        "./features/wptl": {}
+    },
+    "containerEnv": {
+        "PAGER": "\"/usr/bin/less -R\""
+    },
+    "forwardPorts": [80, 8025],
+    "portsAttributes": {
+        "80": {
+            "label": "Application",
+            "onAutoForward": "notify"
+        },
+        "8025": {
+            "label": "Mailpit",
+            "onAutoForward": "notify"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dlech.chmod",
+                "dbaeumer.vscode-eslint",
+                "GitHub.copilot",
+                "esbenp.prettier-vscode",
+                "timonwong.shellcheck",
+                "ms-azuretools.vscode-docker",
+                "zhiayang.tabindentspacealign",
+                "emilast.LogFileHighlighter",
+                "automattic.logwatcher"
+            ]
+        }
+    }
+}

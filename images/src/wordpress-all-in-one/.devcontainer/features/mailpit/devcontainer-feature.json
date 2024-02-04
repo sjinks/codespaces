@@ -1,0 +1,7 @@
+{
+    "id": "mailpit",
+    "name": "Mailpit",
+    "installsAfter": [
+        "./features/php"
+    ]
+}

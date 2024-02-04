@@ -1,0 +1,20 @@
+{
+    "id": "wordpress",
+    "name": "WordPress",
+    "containerEnv": {
+        "WP_CLI_CONFIG_PATH": "/etc/wp-cli/wp-cli.yml"
+    },
+    "updateContentCommand": "composer install -n || true",
+    "postCreateCommand": "/usr/local/bin/wordpress-post-create.sh",
+    "installsAfter": [
+        "./features/mariadb",
+        "./features/wp-cli"
+    ],
+    "customizations": {
+        "vcode": {
+            "extensions": [
+                "johnbillion.vscode-wordpress-hooks"
+            ]
+        }
+    }
+}

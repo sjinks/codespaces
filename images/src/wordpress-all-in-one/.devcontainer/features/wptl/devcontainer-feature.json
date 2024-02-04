@@ -1,0 +1,9 @@
+{
+    "id": "wptl",
+    "name": "WordPress Test Library",
+    "postCreateCommand": "/usr/local/bin/use-wptl",
+    "installsAfter": [
+        "./features/mariadb",
+        "./features/wp-cli"
+    ]
+}

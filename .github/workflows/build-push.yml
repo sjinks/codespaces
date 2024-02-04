@@ -62,10 +62,10 @@ jobs:
           fi
 
       - name: Expose GitHub Runtime
-        uses: crazy-max/ghaction-github-runtime@v3.0.0
+        uses: crazy-max/ghaction-github-runtime@b3a9207c0e1ef41f4cf215303c976869d0c2c1c4 # v3.0.0
 
       - name: Set up Docker
-        uses: crazy-max/ghaction-setup-docker@v3.0.0
+        uses: crazy-max/ghaction-setup-docker@d9be6cade441568ba10037bce5221b8f564981f1 # v3.0.0
         with:
           daemon-config: |
             {

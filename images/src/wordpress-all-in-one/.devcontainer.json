@@ -6,15 +6,15 @@
     },
     "image": "ghcr.io/sjinks/codespaces/alpine-base:latest",
     "features": {
-        "./features/nginx": {},
-        "./features/mariadb": {},
-        "./features/memcached": {},
-        "./features/nodejs": {},
-        "./features/php": {},
-        "./features/mailpit": {},
-        "./features/wp-cli": {},
-        "./features/wordpress": {},
-        "./features/wptl": {}
+        "./.devcontainer/features/nginx": {},
+        "./.devcontainer/features/mariadb": {},
+        "./.devcontainer/features/memcached": {},
+        "./.devcontainer/features/nodejs": {},
+        "./.devcontainer/features/php": {},
+        "./.devcontainer/features/mailpit": {},
+        "./.devcontainer/features/wp-cli": {},
+        "./.devcontainer/features/wordpress": {},
+        "./.devcontainer/features/wptl": {}
     },
     "containerEnv": {
         "PAGER": "\"/usr/bin/less -R\""

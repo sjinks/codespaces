@@ -3,7 +3,7 @@
     "name": "WordPress Test Library",
     "postCreateCommand": "/usr/local/bin/use-wptl",
     "installsAfter": [
-        "./features/mariadb",
-        "./features/wp-cli"
+        "./.devcontainer/features/mariadb",
+        "./.devcontainer/features/wp-cli"
     ]
 }

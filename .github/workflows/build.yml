@@ -50,7 +50,7 @@ jobs:
           fi
 
       - name: Expose GitHub Runtime
-        uses: crazy-max/ghaction-github-runtime@v3.0.0
+        uses: crazy-max/ghaction-github-runtime@b3a9207c0e1ef41f4cf215303c976869d0c2c1c4 # v3.0.0
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0

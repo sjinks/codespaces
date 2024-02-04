@@ -2,6 +2,6 @@
     "id": "wp-cli",
     "name": "WP CLI",
     "installsAfter": [
-        "./features/php"
+        "./.devcontainer/features/php"
     ]
 }

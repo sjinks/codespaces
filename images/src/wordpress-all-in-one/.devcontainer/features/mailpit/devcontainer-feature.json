@@ -2,6 +2,6 @@
     "id": "mailpit",
     "name": "Mailpit",
     "installsAfter": [
-        "./features/php"
+        "./.devcontainer/features/php"
     ]
 }

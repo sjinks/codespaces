@@ -55,7 +55,8 @@ apk add --no-cache \
     php81-xml \
     php81-xmlreader \
     php81-xmlwriter \
-    php81-zip
+    php81-zip \
+    php81-pecl-pcov
 
 [ ! -f /usr/sbin/php-fpm ] && ln -s /usr/sbin/php-fpm81 /usr/sbin/php-fpm
 [ ! -f /usr/bin/php ] && ln -s /usr/bin/php81 /usr/bin/php

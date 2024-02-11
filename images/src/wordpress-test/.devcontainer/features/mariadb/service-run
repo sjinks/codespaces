@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -eu
+exec 2>&1
+
+/usr/bin/install -d /run/mysqld -o mysql -g mysql -m 0755
+
+exec /sbin/su-exec mysql \
+    /usr/bin/mysqld \
+        --silent-startup \
+        --sql-mode=ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION \
+        --skip_networking=0 \
+        --bind-address=127.0.0.1

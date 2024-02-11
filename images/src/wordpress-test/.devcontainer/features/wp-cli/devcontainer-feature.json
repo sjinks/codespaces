@@ -1,0 +1,7 @@
+{
+    "id": "wp-cli",
+    "name": "WP CLI",
+    "installsAfter": [
+        "./.devcontainer/features/php"
+    ]
+}

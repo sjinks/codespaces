@@ -1,0 +1,32 @@
+{
+    "x-build": {
+        "name": "WordPress Test",
+        "image-name": "wordpress-test",
+        "image-version": "1.0.0"
+    },
+    "image": "ghcr.io/sjinks/codespaces/alpine-base:latest",
+    "features": {
+        "./.devcontainer/features/mariadb": {},
+        "./.devcontainer/features/php": {},
+        "./.devcontainer/features/wp-cli": {},
+        "./.devcontainer/features/wptl": {}
+    },
+    "containerEnv": {
+        "PAGER": "\"/usr/bin/less -R\""
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dlech.chmod",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "GitHub.copilot",
+                "timonwong.shellcheck",
+                "ms-azuretools.vscode-docker",
+                "zhiayang.tabindentspacealign",
+                "emilast.LogFileHighlighter",
+                "automattic.logwatcher"
+            ]
+        }
+    }
+}

@@ -43,8 +43,6 @@ download_wp() {
 			wget -q "https://wordpress.org/wordpress-${VERSION}.tar.gz" -O - | tar --strip-components=1 -zxm -f - -C "${BASE_DIR}/wordpress-${VERSION}"
 		fi
 		wget -q https://raw.github.com/markoheijnen/wp-mysqli/master/db.php -O "${BASE_DIR}/wordpress-${VERSION}/wp-content/db.php"
-	else
-		echo "Skipping WordPress download"
 	fi
 
 	if [ ! -d "${BASE_DIR}/wordpress-tests-lib-${VERSION}" ]; then
@@ -53,8 +51,6 @@ download_wp() {
 		svn co --quiet --ignore-externals "https://develop.svn.wordpress.org/${TESTS_TAG}/tests/phpunit/data/"     "${BASE_DIR}/wordpress-tests-lib-${VERSION}/data"
 		rm -f "${BASE_DIR}/wordpress-tests-lib-${VERSION}/wp-tests-config-sample.php"
 		wget -q "https://develop.svn.wordpress.org/${TESTS_TAG}/wp-tests-config-sample.php" -O "${BASE_DIR}/wordpress-tests-lib-${VERSION}/wp-tests-config-sample.php"
-	else
-		echo "Skipping WordPress test library download"
 	fi
 }
 

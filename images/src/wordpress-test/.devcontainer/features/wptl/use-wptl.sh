@@ -11,9 +11,8 @@ WP_DB_HOST=127.0.0.1
 
 db_admin_user=root
 
-echo "Waiting for MySQL to come online..."
 second=0
-while ! mysqladmin ping -u "${db_admin_user}" -h "${WP_DB_HOST}" --silent && [ "${second}" -lt 60 ]; do
+while ! mysqladmin ping -u "${db_admin_user}" -h "${WP_DB_HOST}" --silent >/dev/null 2>&1 && [ "${second}" -lt 60 ]; do
     sleep 1
     second=$((second+1))
 done
@@ -22,9 +21,7 @@ if ! mysqladmin ping -u "${db_admin_user}" -h "${WP_DB_HOST}" --silent >/dev/nul
     exit 1;
 fi
 
-echo "Checking for database connectivity..."
 if ! mysql -h "${WP_DB_HOST}" -u"${WP_DB_USER}" -p"${WP_DB_PASSWORD}" "${WP_DB_NAME}" -e "SELECT 'testing_db'" >/dev/null 2>&1; then
-    echo "No WordPress database exists, provisioning..."
     {
         echo "CREATE USER IF NOT EXISTS '${WP_DB_USER}'@'localhost' IDENTIFIED BY '${WP_DB_PASSWORD}';"
         echo "CREATE USER IF NOT EXISTS '${WP_DB_USER}'@'%' IDENTIFIED BY '${WP_DB_PASSWORD}';"
@@ -34,7 +31,6 @@ if ! mysql -h "${WP_DB_HOST}" -u"${WP_DB_USER}" -p"${WP_DB_PASSWORD}" "${WP_DB_N
     } | mysql -h "${WP_DB_HOST}" -u "${db_admin_user}"
 fi
 
-echo "Configuring WordPress Test Library..."
 if [ ! -d "${BASE_DIR}/wordpress-${WP_VERSION}" ] || [ ! -d "${BASE_DIR}/wordpress-tests-lib-${WP_VERSION}" ]; then
     setup-wptl "${WP_VERSION}"
 fi
@@ -48,4 +44,3 @@ fi
 rm -rf /tmp/wordpress /tmp/wordpress-tests-lib
 ln -sf "${BASE_DIR}/wordpress-${WP_VERSION}" /tmp/wordpress
 ln -sf "${BASE_DIR}/wordpress-tests-lib-${WP_VERSION}" /tmp/wordpress-tests-lib
-echo "Done!"

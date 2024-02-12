@@ -2,7 +2,7 @@
     "x-build": {
         "name": "WordPress Test",
         "image-name": "wordpress-test",
-        "image-version": "1.0.0"
+        "image-version": "1.0.1"
     },
     "image": "ghcr.io/sjinks/codespaces/alpine-base:latest",
     "features": {

@@ -65,7 +65,7 @@ jobs:
         uses: crazy-max/ghaction-github-runtime@b3a9207c0e1ef41f4cf215303c976869d0c2c1c4 # v3.0.0
 
       - name: Set up Docker
-        uses: crazy-max/ghaction-setup-docker@370a7dad4b8ce8dbf00f9363e1652e5074dd6abe # v4.1.0
+        uses: docker/setup-docker-action@370a7dad4b8ce8dbf00f9363e1652e5074dd6abe # v4.1.0
         with:
           daemon-config: |
             {

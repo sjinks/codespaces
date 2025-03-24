@@ -13,60 +13,61 @@ echo "(*) Installing PHP..."
 
 apk add --no-cache \
     icu-data-full ghostscript \
-    php81 php81-fpm php81-pear \
-    php81-pecl-apcu \
-    php81-bcmath \
-    php81-calendar \
-    php81-ctype \
-    php81-curl \
-    php81-dom \
-    php81-exif \
-    php81-fileinfo \
-    php81-ftp \
-    php81-gd \
-    php81-gmp \
-    php81-iconv \
-    php81-intl \
-    php81-json \
-    php81-mbstring \
-    php81-pecl-igbinary \
-    php81-pecl-imagick \
-    php81-pecl-memcache \
-    php81-pecl-memcached \
-    php81-mysqli \
-    php81-mysqlnd \
-    php81-opcache \
-    php81-openssl \
-    php81-pcntl \
-    php81-pdo \
-    php81-pdo_sqlite \
-    php81-phar \
-    php81-posix \
-    php81-session \
-    php81-shmop \
-    php81-simplexml \
-    php81-soap \
-    php81-sockets \
-    php81-sodium \
-    php81-sqlite3 \
-    php81-sysvsem \
-    php81-sysvshm \
-    php81-tokenizer \
-    php81-xml \
-    php81-xmlreader \
-    php81-xmlwriter \
-    php81-zip \
-    php81-pecl-pcov
+    php83 php83-fpm php83-pear \
+    php83-pecl-apcu \
+    php83-bcmath \
+    php83-calendar \
+    php83-ctype \
+    php83-curl \
+    php83-dom \
+    php83-exif \
+    php83-fileinfo \
+    php83-ftp \
+    php83-gd \
+    php83-gmp \
+    php83-iconv \
+    php83-intl \
+    php83-json \
+    php83-mbstring \
+    php83-pecl-igbinary \
+    php83-pecl-imagick \
+    php83-pecl-memcache \
+    php83-pecl-memcached \
+    php83-mysqli \
+    php83-mysqlnd \
+    php83-opcache \
+    php83-openssl \
+    php83-pcntl \
+    php83-pdo \
+    php83-pdo_sqlite \
+    php83-phar \
+    php83-posix \
+    php83-session \
+    php83-shmop \
+    php83-simplexml \
+    php83-soap \
+    php83-sockets \
+    php83-sodium \
+    php83-sqlite3 \
+    php83-sysvsem \
+    php83-sysvshm \
+    php83-tokenizer \
+    php83-xml \
+    php83-xmlreader \
+    php83-xmlwriter \
+    php83-zip \
+    php83-pecl-pcov
 
+rm -f /usr/bin/phar /usr/bin/phar.phar
 [ ! -f /usr/sbin/php-fpm ] && ln -s /usr/sbin/php-fpm81 /usr/sbin/php-fpm
-[ ! -f /usr/bin/php ] && ln -s /usr/bin/php81 /usr/bin/php
-[ ! -f /usr/bin/pecl ] && ln -s /usr/bin/pecl81 /usr/bin/pecl
-[ ! -f /usr/bin/pear ] && ln -s /usr/bin/pear81 /usr/bin/pear
-[ ! -f /usr/bin/peardev ] && ln -s /usr/bin/peardev81 /usr/bin/peardev
-[ ! -f /usr/bin/phar ] && ln -s /usr/bin/phar81 /usr/bin/phar
-[ ! -f /usr/bin/phar.phar ] && ln -s /usr/bin/phar81 /usr/bin/phar.phar
+[ ! -f /usr/bin/php ] && ln -s /usr/bin/php83 /usr/bin/php
+[ ! -f /usr/bin/pecl ] && ln -s /usr/bin/pecl83 /usr/bin/pecl
+[ ! -f /usr/bin/pear ] && ln -s /usr/bin/pear83 /usr/bin/pear
+[ ! -f /usr/bin/peardev ] && ln -s /usr/bin/peardev83 /usr/bin/peardev
+[ ! -f /usr/bin/phar ] && ln -s /usr/bin/phar83 /usr/bin/phar
+[ ! -f /usr/bin/phar.phar ] && ln -s /usr/bin/phar83 /usr/bin/phar.phar
 
-PHP_INI_DIR=/etc/php81
+PHP_INI_DIR=/etc/php83
 echo "export PHP_INI_DIR=${PHP_INI_DIR}" > /etc/profile.d/php_ini_dir.sh
 
 getent group www-data > /dev/null || addgroup -g 82 -S www-data

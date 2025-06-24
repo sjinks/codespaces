@@ -2,7 +2,7 @@
     "x-build": {
         "name": "WordPress All-in-One",
         "image-name": "wordpress-all-in-one",
-        "image-version": "3.2.0"
+        "image-version": "3.2.1"
     },
     "image": "ghcr.io/sjinks/codespaces/alpine-base:latest",
     "features": {

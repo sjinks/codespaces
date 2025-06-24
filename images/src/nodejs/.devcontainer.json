@@ -2,7 +2,7 @@
     "x-build": {
         "name": "Node.js",
         "image-name": "nodejs",
-        "image-version": "2.4.0"
+        "image-version": "2.4.1"
     },
     "build": {
         "dockerfile": "./Dockerfile",
